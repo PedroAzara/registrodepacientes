@@ -1,0 +1,182 @@
+<div class="container">
+  <h2>Lista de Pacientes</h2>
+  <p>Nesta lista, você pode ver todos os pacientes cadastrado em nosso hospital, adicionar novos, editar e</p>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Cadastro">
+    Cadastrar Novo Paciente
+
+  </button>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>UF</th>
+        <th>Data De Nascimento</th>
+        <th>Peso (kg)</th>
+        <th>Altura (cm)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paciente of pacientes">
+        <td>{{ paciente.nome }}</td>
+        <td>{{paciente.cpf}}</td>
+        <td>{{paciente.uf}}</td>
+        <td>{{paciente.nascimento | date:'dd/MM/yyyy'}}</td>
+        <td>{{paciente.peso}}</td>
+        <td>{{paciente.altura}}</td>
+        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Editar
+
+        </button>
+        <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmacaoDeletar">Deletar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal para edição de paciente -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edição de Paciente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <form [formGroup]="pacientesSection" (ngSubmit)="postPaciente()"> 
+      <div class="form-group" style="width:80%; margin: 0 auto;">
+        <label for="exampleFormControlInput1">Nome</label>
+        <input type="text" class="form-control" id="addNomePaciete"formControlName="nome" placeholder="Nome Completo do Paciente">
+        <label for="exampleFormControlInput1">CPF</label>
+        <input type="number" class="form-control" id="addCpfPaciente" formControlName="cpf" placeholder="Número de CPF" maxlength="2">
+        <label for="exampleFormControlSelect1">Estado onde nasceu</label>
+        <select class="form-control" id="addUfPaciente" formControlName="uf">
+          <option>AC</option>
+          <option>AL</option>
+          <option>AP</option>
+          <option>AM</option>
+          <option>BA</option>
+          <option>CE</option>
+          <option>DF</option>
+          <option>ES</option>
+          <option>GO</option>
+          <option>MA</option>
+          <option>MT</option>
+          <option>MS</option>
+          <option>MG</option>
+          <option>PA</option>
+          <option>PB</option>
+          <option>PR</option>
+          <option>PE</option>
+          <option>PI</option>
+          <option>RJ</option>
+          <option>RN</option>
+          <option>RS</option>
+          <option>RO</option>
+          <option>RR</option>
+          <option>SC</option>
+          <option>SP</option>
+          <option>SE</option>
+          <option>TO</option>
+        </select>
+       
+          <label for="birthday">Data de Nascimento:</label>
+          <input type="date" class="form-control" id="addNascimentoPaciente" name="birthday" formControlName="nascimento">
+       
+        <label for="exampleFormControlInput1">Peso</label>
+        <input type="n" class="form-control" id="addPesoPaciente" formControlName="peso" placeholder="Em quilogramas">
+        <label for="exampleFormControlInput1">Altura</label>
+        <input type="number" class="form-control" id="addAlturaPaciente" formControlName="altura" placeholder="Em centímetros">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Salvar mudanças</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para adicionar novo paciente -->
+<div class="modal fade" id="Cadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Novo Paciente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="form-group" style="width:80%; margin: 0 auto;">
+        <label for="exampleFormControlInput1">Nome</label>
+        <input type="text" class="form-control" id="nomePaciente" placeholder="Nome Completo do Paciente">
+        <label for="exampleFormControlInput1">CPF</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Número de CPF">
+        <label for="exampleFormControlSelect1">Estado onde nasceu</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>AC</option>
+          <option>AL</option>
+          <option>AP</option>
+          <option>AM</option>
+          <option>BA</option>
+          <option>CE</option>
+          <option>DF</option>
+          <option>ES</option>
+          <option>GO</option>
+          <option>MA</option>
+          <option>MT</option>
+          <option>MS</option>
+          <option>MG</option>
+          <option>PA</option>
+          <option>PB</option>
+          <option>PR</option>
+          <option>PE</option>
+          <option>PI</option>
+          <option>RJ</option>
+          <option>RN</option>
+          <option>RS</option>
+          <option>RO</option>
+          <option>RR</option>
+          <option>SC</option>
+          <option>SP</option>
+          <option>SE</option>
+          <option>TO</option>
+        </select>
+        <form action="/action_page.php">
+          <label for="birthday">Data de Nascimento:</label>
+          <input type="date" class="form-control" id="birthday" name="birthday">
+        </form>
+        <label for="exampleFormControlInput1">Peso</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Em quilogramas">
+        <label for="exampleFormControlInput1">Altura</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Em metros">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE CONFIRMAÇÃO SE QUER DELETAR -->
+<div class="modal fade" id="confirmacaoDeletar" tabindex="-1" aria-labelledby="confirmacaoDeletarPaciente" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Você tem certeza que quer deletar este paciente?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="form-group" style="width:80%; margin: 0 auto;">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+        <button type="button" class="btn btn-danger">Sim</button>
+      </div>
+    </div>
+  </div>
+</div>
