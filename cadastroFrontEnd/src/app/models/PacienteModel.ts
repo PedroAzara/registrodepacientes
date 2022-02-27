@@ -2,8 +2,7 @@ export interface Pacientes {
     cpf: string;
     nome: string;
     uf: string;
-    nascimento: any;
+    nascimento: Date;
     peso: number;
     altura: number;
-   
   }
